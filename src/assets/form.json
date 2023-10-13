@@ -1,0 +1,140 @@
+{
+  "controls": [
+    {
+      "key": "firstName",
+      "label": "First name:",
+      "value": "",
+      "type": "text",
+      "placeholder": "Enter First name",
+      "validators": {
+        "required": true,
+        "minLength": 5
+      }
+    },
+    {
+      "key": "email",
+      "label": "Email:",
+      "value": "",
+      "type": "email",
+      "placeholder": "abc@xyz.com",
+      "validators": {
+        "required": true,
+        "email": true
+      }
+    },
+    {
+      "key": "color",
+      "label": "Color",
+      "value": "#000000",
+      "type": "color",
+      "placeholder": "",
+      "validators": {}
+    },
+    {
+      "key": "dateOfBirth",
+      "label": "Date Of Birth:",
+      "value": "",
+      "type": "date",
+      "validators": {}
+    },
+    {
+      "key": "time",
+      "label": "Time:",
+      "value": "",
+      "type": "time",
+      "validators": {}
+    },
+    {
+      "key": "comments",
+      "label": "Comments",
+      "value": "",
+      "type": "textarea",
+      "placeholder": "Enter Comment",
+      "validators": {}
+    },
+    {
+      "key": "agreeTerms",
+      "label": "T&C",
+      "value": false,
+      "type": "checkbox",
+      "validators": {
+        "requiredTrue": true
+      }
+    },
+    {
+      "key": "rating",
+      "label": "Rate",
+      "value": 20,
+      "type": "range",
+      "step": 20,
+      "validators": {}
+    },
+    {
+      "key": "country",
+      "label": "Country",
+      "value": "defalut",
+      "type": "dropdown",
+      "options": [
+        {
+          "value": "defalut",
+          "label": "Select a Country"
+        },
+        {
+          "value": "IND",
+          "label": "India"
+        },
+        {
+          "value": "USA",
+          "label": "United States Of America"
+        },
+        {
+          "value": "China",
+          "label": "China"
+        },
+        {
+          "value": "UK",
+          "label": "United Kindom"
+        }
+      ],
+      "validators": {}
+    },
+    {
+      "key": "address",
+      "controlType": "group",
+      "children": [
+        {
+          "key": "street",
+          "type": "text",
+          "label": "Street Address:",
+          "placeholder": "85/425"
+        },
+        {
+          "key": "pinCode",
+          "type": "text",
+          "label": "Pin Code:",
+          "placeholder": "123-456"
+        }
+      ],
+      "validators": {}
+    },
+    {
+      "key": "userInfo",
+      "controlType": "array",
+      "children": [
+        {
+          "key": "phoneNumber",
+          "type": "text",
+          "label": "phone Number:",
+          "placeholder": "123-456-789"
+        },
+        {
+          "key": "age",
+          "type": "text",
+          "label": "Age",
+          "placeholder": "18"
+        }
+      ],
+      "validators": {}
+    }
+  ]
+}

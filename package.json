@@ -1,5 +1,5 @@
 {
-  "name": "jsonto-reactive-form",
+  "name": "json-to-reactive-form",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

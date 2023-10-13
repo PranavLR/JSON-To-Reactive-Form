@@ -1,0 +1,73 @@
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <div *ngFor="let control of jsonFormData;"> <br>
+      <label *ngIf="control.label !== ''" [for]="control.key">{{ control.label }}</label>
+      <input
+        *ngIf="['text','password','email','number','search', 'color','tel','url','checkbox','range','date','time',].includes(control.type!)"
+        [type]="control.type"
+        [formControlName]="control.key"
+        [placeholder]="control.placeholder"
+        [value]="control.value"
+        [checked]="control.value"
+        (change)="control.type === 'checkbox' ? checkboxChange($event, control.key) : ''"
+        [step]="control.step"
+        >
+  
+      <textarea
+        *ngIf="control.type === 'textarea'"
+        [formControlName]="control.key"
+        [placeholder]="control.placeholder"
+  
+        [value]="control.value"
+      ></textarea>
+  
+      <select 
+      *ngIf="control.type === 'dropdown'"
+      [formControlName]="control.key">
+        <ng-template ngFor let-option="$implicit" [ngForOf]="control.options" [ngForTrackBy]="trackLoop";>
+          <option [value]="option.value"> {{option.label}} </option>
+        </ng-template>
+      </select>
+  
+    <!---------------------------------------------------------------------------------------->
+      <div [ngSwitch]="control.controlType">
+        <div *ngSwitchCase="'group'" [formGroupName]="control.key">
+            <h2>Form Group</h2>
+            <ng-template ngFor let-child="$implicit" [ngForOf]="control.children"> <br>
+                <label [for]="control.key">{{child.label}}</label>
+                <input 
+                    [type]="child.type"
+                    [formControlName]="child.key"
+                    [placeholder]="child.placeholder"
+                    >
+            </ng-template>
+        </div>
+  
+        <div *ngSwitchCase="'array'" [formArrayName]="control.key">
+            <h2>Form Array</h2>
+            <ng-template ngFor let-group="$implicit" [ngForOf]="getFormArray(control.key).controls" let-i="index">
+                <div [formGroupName]="i"> <br>
+                    <label [for]="control.key">{{control.key}} {{i+1}}</label><br>
+  
+                    <ng-template ngFor let-child="$implicit" [ngForOf]="control.children">
+                        <label [for]="control.key">{{child.label}}</label>
+                        <input 
+                            [type]="child.type"
+                            [formControlName]="child.key"
+                            [placeholder]="child.placeholder"
+                            >
+  
+                    </ng-template>
+                    <button type="button" [appColor]="'#fff'" [appBackgroundColor]="'#DC3545'" (click)="removeArrayGroup(control.key, i)" *ngIf="i">Delete</button> <br><br>
+              
+                </div>
+            </ng-template>
+            <button type="button" [appColor]="'#fff'" [appBackgroundColor]="'#004fa3'" (click)="addArrayGroup(control.key, control.children!)">Add Group</button>
+        </div>
+      </div>
+  
+    </div>
+    <br><br>
+    <button type="submit" [appColor]="'#fff'" [appBackgroundColor]="'#198754'" >Submit</button>
+  </form>
